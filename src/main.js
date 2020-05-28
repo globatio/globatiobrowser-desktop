@@ -91,8 +91,11 @@ ipcMain.on('synchronous-gotourl', async (event, arg) => {
       console.error(error);
     });
     //view[datview].webContents.loadFile('./cached/'+loadingurl.slice(6)+'/index.html')
-    view[datview].webContents.loadFile(path.join(__dirname, '../cached/'+loadingurl.slice(11)+'/index.html'))
-    console.log('loading page',path.join(__dirname, '../cached/'+loadingurl.slice(11)+'/index.html'))
+    setTimeout(function(){
+      view[datview].webContents.loadFile(path.join(__dirname, '../cached/'+loadingurl.slice(11)+'/index.html'))
+      console.log('loading page',path.join(__dirname, '../cached/'+loadingurl.slice(11)+'/index.html'))
+    }, 3000);
+    
   } else{
     view[activeview].webContents.loadURL(arg)
   }
@@ -147,7 +150,9 @@ ipcMain.on('synchronous-createnewview', (event, arg) => {
         console.error(error);
       });
       //view[datview].webContents.loadFile('./cached/'+url.slice(6)+'/index.html')
-      view[datview].webContents.loadFile(path.join(__dirname, '../cached/'+url.slice(11)+'/index.html'))
+      setTimeout(function(){
+        view[datview].webContents.loadFile(path.join(__dirname, '../cached/'+url.slice(11)+'/index.html'))
+      }, 3000);
     } else if (url.slice(0, 8)=='browser:'){
       console.log('browser')
       event.preventDefault() // prevent default navigation
