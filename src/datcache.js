@@ -29,12 +29,14 @@ syncDat(datkey){
     dat.joinNetwork(function (err) {
     // After the first round of network checks, the callback is called
     // If no one is online, you can exit and let the user know.
+      
+setTimeout(function(){
     if (!dat.network.connected || !dat.network.connecting) {
       console.error('No users currently online for that key.')
       //process.exit(1)
       reject()
     }
-    
+ }, 10000);
     dat.network.on('connection', function () {
       console.log('I connected to someone!')
     })
