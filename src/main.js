@@ -87,7 +87,7 @@ ipcMain.on('synchronous-gotourl', async (event, arg) => {
 
     let datview=activeview
     //view[activeview].webContents.send('sync-datcontent',loadingurl.slice(6))
-    datcache.syncDat(loadingurl.slice(11)).catch((error) => {
+    await datcache.syncDat(loadingurl.slice(11)).catch((error) => {
       console.error(error);
     });
     //view[datview].webContents.loadFile('./cached/'+loadingurl.slice(6)+'/index.html')
@@ -143,7 +143,7 @@ ipcMain.on('synchronous-createnewview', (event, arg) => {
 
       let datview=activeview
       //view[activeview].webContents.send('sync-datcontent',url.slice(6))
-      datcache.syncDat(url.slice(11)).catch((error) => {
+      await datcache.syncDat(url.slice(11)).catch((error) => {
         console.error(error);
       });
       //view[datview].webContents.loadFile('./cached/'+url.slice(6)+'/index.html')
