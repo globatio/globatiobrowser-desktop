@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Layer_1"
+   data-name="Layer 1"
+   viewBox="0 0 257.15 257.15"
+   version="1.1"
+   sodipodi:docname="logo4.svg"
+   inkscape:version="0.92.4 (f8dce91, 2019-08-02)"
+   inkscape:export-filename="/home/lisa/Documents/BLab/globatio-desktop/icons/logo4.png"
+   inkscape:export-xdpi="186.52007"
+   inkscape:export-ydpi="186.52007">
+  <metadata
+     id="metadata19">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>logo svg</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1853"
+     inkscape:window-height="1025"
+     id="namedview17"
+     showgrid="false"
+     inkscape:zoom="3.2821311"
+     inkscape:cx="128.575"
+     inkscape:cy="128.575"
+     inkscape:window-x="67"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1" />
+  <defs
+     id="defs4">
+    <style
+       id="style2">.cls-1{fill:#557ebf;}.cls-2{fill:#ffcd05;}</style>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter865"
+       x="-0.013134912"
+       width="1.0262698"
+       y="-0.011045612"
+       height="1.0220912">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.7164"
+         id="feGaussianBlur867" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter869"
+       x="-0.012000022"
+       width="1.024"
+       y="-0.011999978"
+       height="1.024">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.2867226"
+         id="feGaussianBlur871" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1577"
+       x="-0.023347953"
+       width="1.0466959"
+       y="-0.078583924"
+       height="1.1571678">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.59887502"
+         id="feGaussianBlur1579" />
+    </filter>
+  </defs>
+  <title
+     id="title6">logo svg</title>
+  <circle
+     class="cls-1"
+     cx="128.58"
+     cy="128.58"
+     r="121.87"
+     id="circle8" />
+  <path
+     class="cls-2"
+     d="M146.9,274.31A128.57,128.57,0,0,1,56,54.82,128.57,128.57,0,1,1,237.82,236.65,127.7,127.7,0,0,1,146.9,274.31Zm0-243.73A115.16,115.16,0,1,0,262.06,145.74,115.29,115.29,0,0,0,146.9,30.58Z"
+     transform="translate(-18.33 -17.16)"
+     id="path10"
+     style="fill:#ffffff;opacity:1;filter:url(#filter869);fill-opacity:1;stroke:#e6e6e6;stroke-opacity:1"
+     inkscape:export-xdpi="134.06128"
+     inkscape:export-ydpi="134.06128" />
+  <path
+     class="cls-2"
+     d="M197.78,161v-6.61H136.21v18.29h43.32v33.53H135.18V206c-28.55-3.38-50.74-28.57-50.74-59.14,0-32.89,25.65-59.54,57.3-59.54,1.62,0,3.24.07,4.83.21v-.13h49.79V69.14H145.79v0q-2-.12-4-.12c-41.37,0-74.9,34.84-74.9,77.83s33.53,77.83,74.9,77.83q3.56,0,7-.35h49V161Z"
+     transform="translate(-18.33 -17.16)"
+     id="path12"
+     style="fill:#ffffff;opacity:1;filter:url(#filter865);stroke:#e6e6e6;stroke-opacity:1;fill-opacity:1" />
+  <rect
+     class="cls-2"
+     x="117.89"
+     y="111.9"
+     width="61.56"
+     height="18.29"
+     id="rect14"
+     style="fill:#ffffff;opacity:1;filter:url(#filter1577);fill-opacity:1" />
+</svg>
