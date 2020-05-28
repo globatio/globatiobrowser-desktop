@@ -1,0 +1,26 @@
+{
+  "name": "globatiobrowser-desktop",
+  "version": "0.0.1",
+  "description": "A web 3.0 browser that can load p2p and tranditional web content",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node cache-test.js"
+  },
+  "repository": "https://github.com/globatio/globatiobrowser",
+  "keywords": [
+    "Browser",
+    "p2p"
+  ],
+  "author": "globatio developers",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^4.1.4",
+    "electron-packager": "^14.2.1"
+  },
+  "dependencies": {
+    "dat-node": "^3.5.15",
+    "material-design-icons": "^3.0.1",
+    "webtorrent": "^0.107.17"
+  }
+}
