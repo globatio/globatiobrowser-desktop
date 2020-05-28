@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <link rel="stylesheet" href="../node_modules/material-design-icons/iconfont/material-icons.css">
+<style>
+html, body {
+	font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	-moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+}
+
+#tabs-wrapper {
+  	border: 1px solid black;
+  	background-color: black;
+	overflow-x:  hidden;
+	overflow-y: hidden;
+	height: 30px;
+	border-bottom: lightgray;
+}
+#tabs {
+	display: flex;
+	max-width:calc(100vw - 45px);
+	float: left;
+	flex-direction: row;
+}
+
+#tabs div {
+	border-right: white;
+	height: 30px;
+	float: left;
+	padding: 0;
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#tabs:hover{
+	cursor: default;
+}
+.tab-item{
+	background-color: lightgray;
+	width:200px;
+	max-width:800px;
+	position: relative;
+
+}
+.tab-text{
+	text-align: left;
+	line-height: 2;
+	width: 85%;
+	border-right: none;
+	margin-left: 10px;
+}
+.tab-close{
+	position: absolute;
+	top: 0%;
+	right: 0%;
+	background-color:transparent;
+	border: none;
+	font-size: 16px;
+	width: 26px;
+	line-height: 1.7;
+}
+
+.tab-close:hover {background: #bbb;}
+.material-icons.md-dark { color: white; background-color: black; font-size: 28px;}
+.material-icons.md-gray { color: black; background-color: lightgray; font-size: 24px;}
+.material-icons.md-gray:hover{ color: white;}
+.button {
+  background-color: lightgray;
+  border: none;
+}
+.button-add {
+  background-color: none;
+  border:  1px solid white;
+  color: none;
+}
+.button-add :hover{
+	background-color: #2b2b2b;
+}
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: lightgray;
+  height: 45px;
+}
+.flex-container .left-box {
+  background-color: none;
+  width: 20%;
+  margin: 8px;
+  text-align: left;
+  padding-left: 10px;
+  font-size: 30px;
+}
+.flex-container .right-box {
+  background-color: none;
+  width: 10%;
+  margin: 8px;
+  text-align: right;
+  padding-right: 10px;
+  font-size: 30px;
+}
+.flex-container .central-box {
+  background-color: none;
+  width: 70%;
+  margin: 0px;
+  text-align: center;
+  font-size: 30px;
+}
+.tab-location {
+  width: 100%;
+  height: 24px;
+  font-size: 16px;
+}
+.tab-location:hover {
+	cursor: text;
+}
+</style>
+</head>
+<body>
+	<div id="tabs-wrapper">
+		<table>
+		    <tr>
+			<ul id="tabs"></ul>
+			<button onclick="create()" class="button-add">
+			<i class="material-icons md-dark">add</i>
+			</button>
+		   </tr>
+		</table>
+	</div>
+
+<div class="flex-container">
+	<div class="left-box">
+
+		<button class="button">
+			<i class="material-icons md-gray" onclick="pageGoBack()">keyboard_arrow_left</i>
+		</button>
+	
+
+		<button class="button" >
+			<i class="material-icons md-gray" onclick="pageGoForward()">keyboard_arrow_right</i>
+		</button>
+
+		<button class="button" >
+			<i class="material-icons md-gray" onclick="pageRefresh()">refresh</i>
+		</button>
+
+		<button class="button" onclick="goHome()">
+			<i class="material-icons md-gray">home</i>
+		</button>
+	</div>
+	<div class="central-box">
+		<input type="text" class="tab-location" id="tab-location-id" onkeyup="taburlUpdate()" data-activetabid="0">
+	</div>
+		<div class="right-box">
+			<!button class="button" >
+				<!i class="material-icons md-gray"><!bookmark><!/i>
+			<!/button>
+	
+			<!button class="button" >
+				<!i class="material-icons md-gray" ><!more_vert><!/i>
+			<!/button>
+	</div>
+  </div>
+
+<script>
+
+	window.controlers.pageLoading((data)=>{
+		let tmpactivetabid =document.getElementsByClassName("tab-location")[0].getAttribute("data-activetabid")
+		document.getElementsByClassName("tab-location")[0].value=data
+		document.getElementsByClassName("tab-item")[tmpactivetabid].dataset.url=data
+		document.getElementsByClassName("tab-item")[tmpactivetabid].childNodes[0].textContent=data
+	})
+	document.getElementById("tab-location-id").addEventListener("keyup", function(event) {
+		if (event.keyCode === 13) {
+		event.preventDefault();
+		//document.getElementById("myBtn").click();
+		window.controlers.gotoUrl(document.getElementsByClassName("tab-location")[0].value);
+		}
+	});
+
+	create()
+	//document.getElementsByClassName("tab-location").data.activetabid=0
+
+
+      function create() {
+					
+		var tmptabs = document.getElementsByClassName("tab-item");
+			var i;
+			for (i = 0; i < tmptabs.length; i++) {
+				tmptabs[i].setAttribute("style", "background-color: gray;border-right: 1px solid lightgray;");
+			}
+
+        var h1 = document.createElement('div');	   
+
+		
+        //h1.textContent = "NeXXXXXXXXXw"//+Date.now().toString();
+        h1.setAttribute('class', 'tab-item');
+
+        var h1text = document.createElement('div');	   
+
+		
+        h1text.innerText = "New tab"//+Date.now().toString();
+        h1text.setAttribute('class', 'tab-text');
+		h1text.addEventListener("click", function(){
+			// tab selection 
+			let tmptabs = document.getElementsByClassName("tab-item");
+			let i;
+			for (i = 0; i < tmptabs.length; i++) {
+				tmptabs[i].setAttribute("style", "background-color: gray;border: white;");
+			}
+			this.parentElement.setAttribute("style", "background-color: lightgray;");
+			
+			
+			var alltabs=Array.from( tmptabs)
+			//console.log( alltabs)
+			//console.log(alltabs.indexOf(this.parentElement))
+
+			document.getElementsByClassName("tab-location")[0].setAttribute("data-activetabid", alltabs.indexOf(this.parentElement))
+			//
+			//	
+			document.getElementsByClassName("tab-location")[0].value=this.parentElement.dataset.url
+			window.controlers.selectView(alltabs.indexOf(this.parentElement))
+			});
+
+			h1.append(h1text)
+
+	//document.removeChild(document.getElementById("menu").getLast());
+	   var h1close=document.createElement('button');
+	   h1close.textContent="x"
+	   h1close.setAttribute('class', 'tab-close');
+	   h1close.addEventListener("click", function() {
+		//this.parentElement.style.display = 'none';
+		
+
+		let tmpactivetabid =document.getElementsByClassName("tab-location")[0].getAttribute("data-activetabid")
+
+		let tmptabslength= document.getElementsByClassName("tab-item").length
+		let tmptabs = document.getElementsByClassName("tab-item");
+		var alltabs=Array.from( tmptabs)
+		let tmpdelelteviewid=alltabs.indexOf(this.parentElement)	
+
+		document.getElementById("tabs").removeChild(this.parentElement)
+
+		if (tmpactivetabid==tmptabslength-1){
+			tmpactivetabid--
+
+		window.controlers.selectView(tmpactivetabid)
+		}
+
+		window.controlers.deleteView(tmpdelelteviewid)
+		//console.log(tmpactivetabid,tmptabslength)		
+		console.log(tmpactivetabid)
+		document.getElementsByClassName("tab-item")[tmpactivetabid].setAttribute("style", "background-color: lightgray;");
+		document.getElementsByClassName("tab-location")[0].setAttribute("data-activetabid",tmpactivetabid)
+		document.getElementsByClassName("tab-location")[0].value=tmptabs[tmpactivetabid].dataset.url
+		window.controlers.selectView(tmpactivetabid)
+
+		
+		});
+		h1.append(h1close)
+		h1.dataset.url=''
+        document.getElementById("tabs").append(h1);
+
+		document.getElementsByClassName("tab-location")[0].setAttribute("data-activetabid",document.getElementsByClassName("tab-item").length-1)
+		document.getElementsByClassName("tab-location")[0].value=''
+		// 
+		window.controlers.createNewView();
+      }
+	  function taburlUpdate(){
+		let activetabid =document.getElementsByClassName("tab-location")[0].getAttribute("data-activetabid")//.dataset.activetabid
+		let tmptabs = document.getElementsByClassName("tab-item");
+		tmptabs[activetabid].dataset.url= document.getElementsByClassName("tab-location")[0].value
+		//tmptabs[activetabid].getElementsByClassName("tab-text")[activetabid].innerText='5555'
+		//console.log(document.getElementsByClassName("tab-location")[0].getAttribute("data-activetabid"))
+		console.log(tmptabs[activetabid].dataset.url,activetabid)
+		//window.controlers.gotoUrl(document.getElementsByClassName("tab-location")[0].value);
+	  }
+	  function goHome(){
+		//console.log(window.controlers)
+		document.getElementsByClassName("tab-location")[0].value='https://www.google.com'
+		taburlUpdate()
+		window.controlers.gotoUrl('https://www.google.com');
+	  }
+	  function pageRefresh(){
+		window.controlers.pageRefresh()
+	  }
+	  function pageGoBack(){
+		  window.controlers.pageGoBack()
+	  }
+	  function pageGoForward(){
+		  window.controlers.pageGoForward()
+	  }
+</script>
+</body>
+</html>
