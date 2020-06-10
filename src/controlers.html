@@ -162,9 +162,9 @@ html, body {
 				<!i class="material-icons md-gray"><!bookmark><!/i>
 			<!/button>
 	
-			<!button class="button" >
-				<!i class="material-icons md-gray" ><!more_vert><!/i>
-			<!/button>
+			<button class="button"  id="advancemenu-id" onclick="advanceMenu()">
+				<i class="material-icons md-gray" >more_vert</i>
+			</button>
 	</div>
   </div>
 
@@ -295,6 +295,12 @@ html, body {
 	  }
 	  function pageGoForward(){
 		  window.controlers.pageGoForward()
+	  }
+	  function advanceMenu(){
+		  //
+		  let positionx= document.getElementById("advancemenu-id").offsetLeft-100
+		  let positiony= document.getElementById("advancemenu-id").offsetHeight
+		  window.controlers.advanceMenu(positionx,positiony)
 	  }
 </script>
 </body>

@@ -18,6 +18,14 @@ ctxMenu.append(new MenuItem({role:'copy'}))
 ctxMenu.append(new MenuItem({role:'paste' }))
 ctxMenu.append(new MenuItem({role:'selectall' }))
 
+const advMenu=new Menu()
+
+advMenu.append(new MenuItem({label:'hello',
+                              click:function(){
+                                console.log('advance Menu hello')
+                              }
+}))
+
 
 /*
 ipcMain.on('asynchronous-message', (event, arg) => {
@@ -117,6 +125,14 @@ ipcMain.on('synchronous-pagerefresh', async (event, arg) => {
 event.returnValue = 'pong'
 })
 
+ipcMain.on('synchronous-advancemenu', async (event, arg) => {
+  advMenu.popup({window:mainWindow,x:arg.x+58,y:arg.y+48})
+event.returnValue = 'pong'
+})
+
+//
+//
+//
 ipcMain.on('synchronous-createnewview', (event, arg) => {
   console.log('newview',arg)
 

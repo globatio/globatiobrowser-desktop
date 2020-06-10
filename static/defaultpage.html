@@ -40,23 +40,41 @@ body {
 .topnav .search-container button:hover {
   background: #ccc;
 }
-  .topnav input[type=text] {
-    border: 1px solid #ccc;  
-  }
+.topnav input[type=text] {
+  border: 1px solid #ccc;  
+}
+.welcomenav {
+  margin: auto;
+  width: 600px;
+  padding: 10px;
+
+}
 
 </style>
 </head>
 <body>
 
 <div class="topnav">
-<p> ... build the internet of the people </p>
+<!p><! ... build the internet of the people ><!/p>
   <div class="search-container">
- 
       <input type="text" placeholder="Old web search ..." name="search" id="searchText">
       <button type="submit" id="searchSubmit" onclick="search()"><i class="fa fa-search"></i></button>
-
   </div>
 </div>
+<br>
+<br>
+
+
+
+<div class="welcomenav">
+  <b>Get started building dapps, try the following tutorials :</b>
+  <ul style="list-style-type:none;  line-height: 1.4;">
+    <li><a href="https://www.w3schools.com">Simple one page presentation</a></li>
+    <li><a href="https://www.w3schools.com">Peer-to-peer chat</a></li>
+    <li><a href="https://www.w3schools.com">Torrent based video streaming</a></li>
+  </ul> 
+</div>
+
 
 <script>
 
@@ -71,8 +89,6 @@ input.addEventListener("keyup", function(event) {
 });
 
 function search() {
-  
-
   let keyword=document.getElementById("searchText").value 
   location.assign("https://www.google.com/search?channel=fs&q="+keyword);
 }

@@ -10,7 +10,8 @@ const controlers = {
     pageLoading: callback => listener = callback,
     pageGoBack:()=>ipcRenderer.sendSync('synchronous-goback'),
     pageGoForward:()=>ipcRenderer.sendSync('synchronous-goforward'),
-    pageRefresh:()=>ipcRenderer.sendSync('synchronous-pagerefresh')
+    pageRefresh:()=>ipcRenderer.sendSync('synchronous-pagerefresh'),
+    advanceMenu:(positionx,positiony)=>ipcRenderer.sendSync('synchronous-advancemenu',{x:positionx,y:positiony})
     //onMessage: callback => listener = callback,
     //syncTorrent: magnet => cache.syncTorrent(magnet)
   }
