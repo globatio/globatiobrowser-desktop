@@ -3,6 +3,7 @@ const path = require('path')
 
 const { ipcMain } = require('electron')
 let view =[]
+let viewtype=[]
 let activeview =0
 const DatCache=require('./datcache.js')
 const datcache=new DatCache()
@@ -17,14 +18,6 @@ const ctxMenu= new Menu()
 ctxMenu.append(new MenuItem({role:'copy'}))
 ctxMenu.append(new MenuItem({role:'paste' }))
 ctxMenu.append(new MenuItem({role:'selectall' }))
-
-const advMenu=new Menu()
-
-advMenu.append(new MenuItem({label:'hello',
-                              click:function(){
-                                console.log('advance Menu hello')
-                              }
-}))
 
 
 /*
@@ -84,11 +77,36 @@ mainWindow.on('leave-full-screen', () => {
 //console.log(mainWindow)
 
 
+const advMenu=new Menu()
+
+advMenu.append(new MenuItem({label:'hello',
+                              click:function(){
+                                mainWindow.webContents.send('create-secureview')
+                                console.log('advance Menu hello')
+                                activeview=view.length
+                                console.log(path.join(__dirname, 'preload.js'))
+                                viewtype.push('secureview')
+                                view.push(new BrowserView(({contextIsolation: true,webPreferences: { preload : path.join(__dirname, 'securepreload.js'), nodeIntegration : false , plugins : false } }))) 
+                                mainWindow.setBrowserView(view[activeview])
+                                view[activeview].setBounds({ x: 0, y: 76, width: mainWindow.getBounds().width, height: mainWindow.getBounds().height-76 })
+                                view[activeview].setAutoResize({width:true,height:true})
+                                
+                                view[activeview].webContents.loadFile(path.join(__dirname, '../static/securepage.html'))
+                                //mainWindow.webContents.send('page-loading', '')  
+                              
+                              
+                                view[activeview].webContents.on('context-menu',function(e,params){
+                                    ctxMenu.popup(view[activeview],params.x,params.y)
+                                })
+                              }
+}))
+
+
 
 
 ipcMain.on('synchronous-gotourl', async (event, arg) => {
   let loadingurl=arg
-
+  if (viewtype[activeview]!='secureview'){
   if (loadingurl.search('gp://datkey')==0){
     console.log('Request dat key',loadingurl.slice(11))
     mainWindow.webContents.send('page-loading', loadingurl)
@@ -106,6 +124,8 @@ ipcMain.on('synchronous-gotourl', async (event, arg) => {
     
   } else{
     view[activeview].webContents.loadURL(arg)
+  }
+  
   }
   event.returnValue = 'pong'
 })
@@ -138,6 +158,7 @@ ipcMain.on('synchronous-createnewview', (event, arg) => {
 
   activeview=view.length
   console.log(path.join(__dirname, 'preload.js'))
+  viewtype.push('basicview')
   view.push(new BrowserView(({contextIsolation: true,webPreferences: { preload : path.join(__dirname, 'preload.js'), nodeIntegration : false , plugins : false } }))) 
   mainWindow.setBrowserView(view[activeview])
   view[activeview].setBounds({ x: 0, y: 76, width: mainWindow.getBounds().width, height: mainWindow.getBounds().height-76 })
@@ -218,6 +239,7 @@ ipcMain.on('synchronous-deleteview', (event, arg) => {
   view[viewid].webContents.send('destroyclient','')
   view[viewid].webContents.loadFile(path.join(__dirname, 'empty.html')) 
   view.splice(viewid, 1);
+  viewtype.splice(viewid, 1);
 
   event.returnValue = 'pong'
 })

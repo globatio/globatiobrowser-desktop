@@ -176,6 +176,9 @@ html, body {
 		document.getElementsByClassName("tab-item")[tmpactivetabid].dataset.url=data
 		document.getElementsByClassName("tab-item")[tmpactivetabid].childNodes[0].textContent=data
 	})
+	window.controlers.createSecureView(()=>{
+		create('secureview')
+	})
 	document.getElementById("tab-location-id").addEventListener("keyup", function(event) {
 		if (event.keyCode === 13) {
 		event.preventDefault();
@@ -188,7 +191,7 @@ html, body {
 	//document.getElementsByClassName("tab-location").data.activetabid=0
 
 
-      function create() {
+      function create(vtype) {
 					
 		var tmptabs = document.getElementsByClassName("tab-item");
 			var i;
@@ -205,7 +208,7 @@ html, body {
         var h1text = document.createElement('div');	   
 
 		
-        h1text.innerText = "New tab"//+Date.now().toString();
+        h1text.innerText = ""//"New tab"//+Date.now().toString();
         h1text.setAttribute('class', 'tab-text');
 		h1text.addEventListener("click", function(){
 			// tab selection 
@@ -269,8 +272,11 @@ html, body {
 
 		document.getElementsByClassName("tab-location")[0].setAttribute("data-activetabid",document.getElementsByClassName("tab-item").length-1)
 		document.getElementsByClassName("tab-location")[0].value=''
-		// 
-		window.controlers.createNewView();
+		//
+		if (vtype!='secureview'){
+			window.controlers.createNewView();
+		}
+		
       }
 	  function taburlUpdate(){
 		let activetabid =document.getElementsByClassName("tab-location")[0].getAttribute("data-activetabid")//.dataset.activetabid
@@ -283,7 +289,7 @@ html, body {
 	  }
 	  function goHome(){
 		//console.log(window.controlers)
-		document.getElementsByClassName("tab-location")[0].value='https://www.google.com'
+		//document.getElementsByClassName("tab-location")[0].value='https://www.google.com'
 		taburlUpdate()
 		window.controlers.gotoUrl('https://www.google.com');
 	  }
