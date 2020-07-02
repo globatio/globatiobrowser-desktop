@@ -84,7 +84,7 @@ advMenu.append(new MenuItem({label:'hello',
                                 mainWindow.webContents.send('create-secureview')
                                 console.log('advance Menu hello')
                                 activeview=view.length
-                                console.log(path.join(__dirname, 'preload.js'))
+                                //console.log(path.join(__dirname, 'preload.js'))
                                 viewtype.push('secureview')
                                 view.push(new BrowserView(({contextIsolation: true,webPreferences: { preload : path.join(__dirname, 'securepreload.js'), nodeIntegration : false , plugins : false } }))) 
                                 mainWindow.setBrowserView(view[activeview])
